@@ -31,22 +31,24 @@ public class Administrador extends RamaAdministrativa{
         this.contrasenna = contrasenna;
     }
 
-    
-    
-    
-    
     public void ofrecerInformacion(){
     
     }
     
+    @Override
     public void consultarInformacion(String numeroCuenta , HashMap<String,Cliente> clientes){
        System.out.println(clientes.get(numeroCuenta)); 
        
     }
     
-    public void modificarDatos(){
+    @Override
+    public void modificarDatos(String numeroCuenta , HashMap<String,Cliente> clientes, String tipoCuenta, int saldo, int prestamo , String id){
+   
     }
-    public void eliminarCliente(){
+    
+    @Override
+    public void eliminarCliente(String numeroCuenta , HashMap<String,Cliente> clientes){
+        clientes.remove(numeroCuenta);
     }
     public void crearUsuario(){
     }
@@ -56,10 +58,7 @@ public class Administrador extends RamaAdministrativa{
        
     }
 
-    @Override
-    public void consultarInformacion() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -76,6 +75,10 @@ public class Administrador extends RamaAdministrativa{
     public void setContrasenna(String contrasenna) {
         this.contrasenna = contrasenna;
     }
+
+   
+
+    
 
     
 }

@@ -5,6 +5,8 @@
  */
 package data;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Asus-PC
@@ -15,9 +17,9 @@ public abstract class RamaAdministrativa implements Banco{
     private int edad;
     private String identificacion;
     
-    public abstract void consultarInformacion();
-    public abstract void modificarDatos();
-    public abstract void eliminarCliente();
+    public abstract void consultarInformacion(String numeroCuenta , HashMap<String,Cliente> clientes);
+    public abstract void modificarDatos(String numeroCuenta , HashMap<String,Cliente> clientes, String tipoCuenta, int saldo, int prestamo , String id);
+    public abstract void eliminarCliente(String numeroCuenta , HashMap<String,Cliente> clientes);
     public abstract void crearUsuario();
 
     public RamaAdministrativa(String nombre, String apellido, int edad, String identificacion) {

@@ -4,7 +4,5 @@ public interface Banco {
 
     void manejoDinero();
 
-    void cobrarDinero();
 
-    void sx();
 }
