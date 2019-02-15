@@ -21,6 +21,7 @@ public abstract class RamaAdministrativa implements Banco{
     public abstract void modificarDatos(String numeroCuenta , HashMap<String,Cliente> clientes, String tipoCuenta, int saldo, int prestamo , String id);
     public abstract void eliminarCliente(String numeroCuenta , HashMap<String,Cliente> clientes);
     public abstract void crearUsuario();
+    public abstract void OrdenarSaldos(String numeroCuenta , HashMap<String,Cliente> clientes , Cliente cliente);
 
     public RamaAdministrativa(String nombre, String apellido, int edad, String identificacion) {
         this.nombre = nombre;

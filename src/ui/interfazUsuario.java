@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ui;
 
-/**
- *
- * @author Asus-PC
- */
 public class interfazUsuario {
     public static void bienvenida(){
         System.out.println("Bienvenido Administrador");
@@ -20,9 +12,19 @@ public class interfazUsuario {
         System.out.println("2. Modificar Informacion");
         System.out.println("3. Crear Usuario");
         System.out.println("4. Eliminar Usuario");    
-        System.out.println("5. Cerrar Sesion");  
+        System.out.println("5. Tabla de reportes");    
+        System.out.println("6. Cerrar Sesion");  
     }
-    
+
+        public static void opcionCuenta2(){
+        System.out.println("por favor ingrese la opcion desea modificar ***Solo un DIGITO NUMERICO***");
+        System.out.println("1. Identificacion");
+        System.out.println("2. Tipo de Cuenta");
+        System.out.println("3. Saldo");
+        System.out.println("4. Prestamo");    
+        System.out.println("5. Todas las anteriores");  
+    }
+        
     public static void mensajeError(){
         System.out.println("opcion invalida, digite de nuevo***SOLO UN DIGITO NUMERICO***");
         System.out.println(" ");
@@ -94,5 +96,17 @@ public class interfazUsuario {
     
     public static void sadloModi(){
          System.out.println("ingrese el saldo a modificar");
+    }
+    
+    public static void imprimirTabla(){
+        System.out.println("Los usuario con mas dinero del banco son:");
+        System.out.println(" ");
+    }
+    
+    public static void infoTabla(){
+        System.out.println("Digite (1) si quiere visualizar la informacion de los usuarios");
+        System.out.println("Digite (0) si  no quiere visualizar la informacion de los usuarios");
+        System.out.println("SOLO SE ADMITEN ESOS DIGITOS SIN EL PARENTESIS");
+        System.out.println(" ");
     }
 }

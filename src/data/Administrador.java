@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package data;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- *
- * @author Asus-PC
- */
 public class Administrador extends RamaAdministrativa{
     private String nombreUsuario;
     private String contrasenna;
@@ -20,7 +11,6 @@ public class Administrador extends RamaAdministrativa{
         super(null, null, 0, null);
     }
 
-    
     public Administrador(String nombre, String apellido, int edad, String identificacion) {
         super(nombre, apellido, edad, identificacion);
     }
@@ -58,8 +48,6 @@ public class Administrador extends RamaAdministrativa{
        
     }
 
-   
-
     public String getNombreUsuario() {
         return nombreUsuario;
     }
@@ -74,6 +62,11 @@ public class Administrador extends RamaAdministrativa{
 
     public void setContrasenna(String contrasenna) {
         this.contrasenna = contrasenna;
+    }
+
+    @Override
+    public void OrdenarSaldos(String numeroCuenta, HashMap<String, Cliente> clientes, Cliente cliente) {
+
     }
 
    

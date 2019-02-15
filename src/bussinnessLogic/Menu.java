@@ -2,7 +2,10 @@ package bussinnessLogic;
 
 import data.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 import ui.interfazUsuario;
 
@@ -11,15 +14,16 @@ public class Menu {
     public static void main(String[] args) {
         
         //clientes
-        Cliente c1 = new Cliente("alfonso","ramirez","123456789","123",1000000,"400000","Cuenta Corriente");
-        Cliente c2 = new Cliente("andres","pereira","15678567543","456",1000000,"400000","Cuenta Ahorros");
-        Cliente c3 = new Cliente("antonio","villamil","124654324","789",1000000,"400000","Cuenta Corriente");
-        Cliente c4 = new Cliente("angelica","rodriguez","845678","101",1000000,"400000","Cuenta Ahorros");
-        Cliente c5 = new Cliente("antanas","quintero","4895","121",1000000,"400000","Cuenta Corriente");
+        Cliente c1 = new Cliente("alfonso","ramirez","123456789","123",500000,"400000","Cuenta Corriente");
+        Cliente c2 = new Cliente("andres","pereira","15678567543","456",9000000,"400000","Cuenta Ahorros");
+        Cliente c3 = new Cliente("lorena", "sierra" , "39638532986" , "678" ,2000000 , "50000" , "Cuenta Ahorros");
+        Cliente c4 = new Cliente("mariana", "lopez" , "5457457", "910" , 600000 , "750000" , "Cuenta Corriente");
+        Cliente c5 = new Cliente("armando", "banquito" , "1238567654" ,"111", 12000000 , "10000" , "Cuenta Ahorros");
+        Cliente c6 = new Cliente("laura", "cardenas" , "485634865" , "213" , 40000 , "500000" , "cuenta corriente");
         Cliente cm = new Cliente();
-        Cliente cn = new Cliente("999");
+        Cliente cn = new Cliente();
         Cliente clienteCreado = new Cliente();
-
+        
         //administradores
         Administrador a1 = new Administrador("alejandra09", "contrasenna", "alejandra", "ramirez", 23, "102938475");
         Administrador a2 = new Administrador("alberto123", "contrasenna1", "alberto", "villamil", 34, "101754384");
@@ -29,7 +33,16 @@ public class Menu {
         
         //meter el cliente a el mapa
         clientes.put(c1.getNumeroCuenta(),c1);
-        clientes.put("999",cn);
+        clientes.put(c2.getNumeroCuenta(),c2);
+        clientes.put(c3.getNumeroCuenta(),c3);
+        clientes.put(c4.getNumeroCuenta(),c4);
+        clientes.put(c5.getNumeroCuenta(),c5);
+        clientes.put(c6.getNumeroCuenta(),c6);
+
+
+        //meter saldos en un array
+        List<Cliente> clientesPorSaldos = new ArrayList<>(clientes.values());
+        Collections.sort(clientesPorSaldos, Comparator.comparing(Cliente::getSaldo));
         
         //variables
        String contra ;
@@ -54,10 +67,11 @@ public class Menu {
        String nCuentaMod;
        int saldoMod;
        String numeroCuentaUsuarioMod;
-       
-       
-       
-       
+       int cont = 0;
+       int cont1 = 0;
+       int verInformacion;
+
+       //metodo para agregar el procentaje de descuento
        
        //inicio del menu
         do{
@@ -82,29 +96,65 @@ public class Menu {
                                 a1.consultarInformacion(numeroCuentaUsuario,clientes);
                             }while(clientes.containsKey(numeroCuentaUsuario)==false);
                             break;
-                        case 2:
-                            do{
+                        case 2://modificar datos
+                             do{
                                 interfazUsuario.mensajeNumeroCuenta();
                                 Scanner numeroCuentaMod = new Scanner(System.in);
                                 numeroCuentaUsuarioMod = numeroCuentaMod.nextLine();
-                                if(numeroCuentaUsuarioMod.equals(clientes.get(numeroCuentaUsuarioMod))){
-                                    interfazUsuario.idModi();
-                                    Scanner id = new Scanner(System.in);
-                                    idMod = id.nextLine();
-                                    interfazUsuario.tipoCuentaModi();
-                                    Scanner tipoCuentaEdita = new Scanner(System.in);
-                                    cuentaMod = tipoCuentaEdita.nextLine();
-                                    interfazUsuario.sadloModi();
-                                    Scanner Saldo = new Scanner(System.in);
-                                    saldoMod = Saldo.nextInt();
-                                    clientes.get(numeroCuentaUsuarioMod).setId(idMod);
-                                    clientes.get(numeroCuentaUsuarioMod).setTipoCuenta(cuentaMod);
-                                    clientes.get(numeroCuentaUsuarioMod).setSaldo(saldoMod);
-                                    modificado = true;
+                                
+                                if(clientes.containsKey(numeroCuentaUsuarioMod)==true){
+                                    interfazUsuario.opcionCuenta2();
+                                    int opcion2 =lector.nextInt();
+                                  
+                                   switch(opcion2){
+                                       case 1:
+                                            interfazUsuario.idModi();
+                                            Scanner id = new Scanner(System.in);
+                                            idMod = id.nextLine();
+                                            clientes.get(numeroCuentaUsuarioMod).setId(idMod);
+                                       break;
+                                       case 2:
+                                            interfazUsuario.tipoCuentaModi();
+                                            Scanner tipoCuentaEdita = new Scanner(System.in);
+                                            cuentaMod = tipoCuentaEdita.nextLine();
+                                            clientes.get(numeroCuentaUsuarioMod).setTipoCuenta(cuentaMod);
+                                       break;
+                                       case 3:
+                                           interfazUsuario.sadloModi();
+                                           Scanner Saldo = new Scanner(System.in);
+                                           saldoMod = Saldo.nextInt();
+                                           clientes.get(numeroCuentaUsuarioMod).setSaldo(saldoMod);
+                                       break;
+                                       case 4:
+                                            interfazUsuario.sadloModi();
+                                            Scanner Prestamo = new Scanner(System.in);
+                                            saldoMod = Prestamo.nextInt();
+                                            clientes.get(numeroCuentaUsuarioMod).setSaldo(saldoMod);
+                                       break;
+                                       case 5:
+                                            interfazUsuario.idModi();
+                                            // Tocaria CReeear nuevos Scanner
+                                            Scanner id1 = new Scanner(System.in);
+                                            idMod = id1.nextLine();
+                                            clientes.get(numeroCuentaUsuarioMod).setId(idMod);
+                                            interfazUsuario.tipoCuentaModi();
+                                            Scanner tipoCuentaEdita1 = new Scanner(System.in);
+                                            cuentaMod = tipoCuentaEdita1.nextLine();
+                                            clientes.get(numeroCuentaUsuarioMod).setTipoCuenta(cuentaMod);
+                                            interfazUsuario.sadloModi();
+                                            Scanner Saldo1 = new Scanner(System.in);
+                                            saldoMod = Saldo1.nextInt();
+                                            clientes.get(numeroCuentaUsuarioMod).setSaldo(saldoMod);
+
+                                       default: 
+                                           System.out.println("opcion invalida");
+                                         break;
+                                   }
+                                   modificado = true;
                                 }
                             }while(modificado == false); 
                             break;
-                        case 3:
+                        case 3://crear Usuario
                                 interfazUsuario.pedirNombre();
                                 Scanner nombre = new Scanner(System.in);
                                 nombreNuevo = nombre.nextLine();
@@ -133,7 +183,8 @@ public class Menu {
                                 clienteCreado.setNumeroCuenta(numeroCuentaNuevaCreada);
                                 clienteCreado.setSaldo(saldoInicial);
                                 clienteCreado.setPrestamo(prestacionInicial);
-                                clientes.replace("0",clienteCreado);
+                                clientes.put(numeroCuentaNuevaCreada,cn);
+                                clientes.replace(numeroCuentaNuevaCreada,clienteCreado);
                                 interfazUsuario.usuarioCreado();
                             break;
                         case 4://Eliminar usuario
@@ -148,12 +199,37 @@ public class Menu {
                                     break;
                                 }
                             }while(eliminado == false);
-                        case 5://salir
+                        case 5://tabla de reportes, 5 usuario con mas dinero
+                            interfazUsuario.imprimirTabla();
+                                for(int i = 5 ; i>=0 ; i--){
+                                    if(cont < 5){
+                                        System.out.println(clientesPorSaldos.get(i).getNombre() + " " + clientesPorSaldos.get(i).getApellido() );
+                                        cont++;
+                                    }
+                                }
+                                interfazUsuario.infoTabla();
+                                Scanner verInfo = new Scanner(System.in);
+                                verInformacion = verInfo.nextInt();
+                                if(verInformacion == 1){
+                                    for(int j = 5 ; j>=0 ; j--){
+                                        if(cont1 < 5){
+                                            System.out.println("nombre: " + clientesPorSaldos.get(j).getNombre() + " " + clientesPorSaldos.get(j).getApellido() );
+                                            System.out.println("Identifiacion: " + clientesPorSaldos.get(j).getId());
+                                            System.out.println("No. Cuenta: " + clientesPorSaldos.get(j).getNumeroCuenta());
+                                            System.out.println("Tipo De Cuenta: " + clientesPorSaldos.get(j).getTipoCuenta());
+                                            System.out.println("Saldo Total: " + clientesPorSaldos.get(j).getSaldo());
+                                            System.out.println(" ");
+                                            cont1++;
+                                        }
+                                    }
+                                }
                           break;
+                        case 6://salir
+                          break;    
                         default:
                             interfazUsuario.mensajeError();    
                     }
-                }while(opcion != 5);
+                }while(opcion != 6);
             }else{
                 contador = contador + 1;
                 System.out.println("el usuario y la contraseña es incorrecto, por favor intentelo de nuevo " + " quedan " + (3-contador) + "intentos");
