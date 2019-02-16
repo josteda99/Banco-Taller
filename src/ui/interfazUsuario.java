@@ -26,12 +26,16 @@ public class interfazUsuario {
     }
         
     public static void mensajeError(){
-        System.out.println("opcion invalida, digite de nuevo***SOLO UN DIGITO NUMERICO***");
+        System.out.println("opcion invalida, digite de nuevo ***SOLO UN DIGITO NUMERICO*** ");
         System.out.println(" ");
     }
     
     public static void mensajeNumeroCuenta(){
         System.out.println("para Consultar informacion de los clientes, por favor ingrese el numero de cuenta del cliente ***solo numeros***");
+    }
+    
+    public static void mensajeNumeroCuenta1(){
+        System.out.println("para Modificar la informacion de los clientes, por favor ingrese el numero de cuenta del cliente ***solo numeros***");
     }
     
     public static void mensajeEliminar(){

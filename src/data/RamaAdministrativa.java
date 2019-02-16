@@ -29,6 +29,11 @@ public abstract class RamaAdministrativa implements Banco{
         this.edad = edad;
         this.identificacion = identificacion;
     }
+
+    @Override
+    public void manejoDinero() {
+        System.out.println("el Banco esta manejando ese dinero");
+    }
     
     
     

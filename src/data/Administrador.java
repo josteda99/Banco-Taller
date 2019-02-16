@@ -22,18 +22,15 @@ public class Administrador extends RamaAdministrativa{
     }
 
     public void ofrecerInformacion(){
-    
     }
     
     @Override
     public void consultarInformacion(String numeroCuenta , HashMap<String,Cliente> clientes){
-       System.out.println(clientes.get(numeroCuenta)); 
-       
+       System.out.println(clientes.get(numeroCuenta));   
     }
     
     @Override
     public void modificarDatos(String numeroCuenta , HashMap<String,Cliente> clientes, String tipoCuenta, int saldo, int prestamo , String id){
-   
     }
     
     @Override

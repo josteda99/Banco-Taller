@@ -41,7 +41,7 @@ public class Cliente {
     @Override
     public String toString() {
         return "nombre del usuario:" + nombre + '\n' +
-                "apellido del usuario" + apellido + '\n' +
+                "apellido del usuario : " + apellido + '\n' +
                 "identificacion : " + id + '\n' + 
                 "tipo de Cuenta : " + tipoCuenta + '\n' +
                 "numero de cuenta: " + numeroCuenta + '\n'+

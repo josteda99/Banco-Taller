@@ -14,13 +14,12 @@ public class Menu {
     public static void main(String[] args) {
         
         //clientes
-        Cliente c1 = new Cliente("alfonso","ramirez","123456789","123",500000,"400000","Cuenta Corriente");
+        Cliente c1 = new Cliente("alfonso","ramirez","123456789","123",600000000,"400000","Cuenta Corriente");
         Cliente c2 = new Cliente("andres","pereira","15678567543","456",9000000,"400000","Cuenta Ahorros");
         Cliente c3 = new Cliente("lorena", "sierra" , "39638532986" , "678" ,2000000 , "50000" , "Cuenta Ahorros");
         Cliente c4 = new Cliente("mariana", "lopez" , "5457457", "910" , 600000 , "750000" , "Cuenta Corriente");
         Cliente c5 = new Cliente("armando", "banquito" , "1238567654" ,"111", 12000000 , "10000" , "Cuenta Ahorros");
         Cliente c6 = new Cliente("laura", "cardenas" , "485634865" , "213" , 40000 , "500000" , "cuenta corriente");
-        Cliente cm = new Cliente();
         Cliente cn = new Cliente();
         Cliente clienteCreado = new Cliente();
         
@@ -39,39 +38,58 @@ public class Menu {
         clientes.put(c5.getNumeroCuenta(),c5);
         clientes.put(c6.getNumeroCuenta(),c6);
 
-
         //meter saldos en un array
         List<Cliente> clientesPorSaldos = new ArrayList<>(clientes.values());
         Collections.sort(clientesPorSaldos, Comparator.comparing(Cliente::getSaldo));
         
         //variables
-       String contra ;
-       String usuario;
-       int opcion;
-       String numeroCuentaUsuario;
-       String numeroCuentaUsuario1;
-       String numeroCuentaUsuario2;
-       String tipoCuenta;
-       int contador=0;
-       boolean eliminado = false;
-       boolean modificado = false;
-       String nombreNuevo;
-       String apellidoNuevo;
-       String idNueva;
-       String tipoDeCuentaNueva;
-       String numeroCuentaNuevaCreada; 
-       int saldoInicial;
-       String prestacionInicial;
-       String idMod;
-       String cuentaMod;
-       String nCuentaMod;
-       int saldoMod;
-       String numeroCuentaUsuarioMod;
-       int cont = 0;
-       int cont1 = 0;
+        String contra ;
+        String usuario;
+        int opcion;
+        String numeroCuentaUsuario;
+        String numeroCuentaUsuario1;
+        String numeroCuentaUsuario2;
+        String tipoCuenta;
+        int contador=0;
+        boolean eliminado = false;
+        boolean modificado = false;
+        String nombreNuevo;
+        String apellidoNuevo;
+        String idNueva;
+        String tipoDeCuentaNueva;
+        String numeroCuentaNuevaCreada; 
+        int saldoInicial;
+        String prestacionInicial;
+        String idMod;
+        String cuentaMod;
+        String nCuentaMod;
+        int saldoMod;
+        String numeroCuentaUsuarioMod;
+        int cont = 0;
+        int cont1 = 0;
        int verInformacion;
+       int saldoSubido;
+       int retencionFuente;
 
        //metodo para agregar el procentaje de descuento
+       
+       for(int i=0 ; i < clientesPorSaldos.size() ; i++){
+           
+           //retencion en la fuente, impuesto, para persoas con menos de 50000000 pesos
+           if(clientesPorSaldos.get(i).getSaldo() < 50000000){
+                retencionFuente = clientesPorSaldos.get(i).getSaldo() - ((clientesPorSaldos.get(i).getSaldo()* 2 )/100);
+                clientesPorSaldos.get(i).setSaldo(retencionFuente);
+           }else{
+                retencionFuente = clientesPorSaldos.get(i).getSaldo() + ((clientesPorSaldos.get(i).getSaldo()* (int)2.75 )/100);
+                clientesPorSaldos.get(i).setSaldo(retencionFuente);
+           }
+           
+           if(clientesPorSaldos.get(i).getSaldo() > 1000000){
+                saldoSubido = clientesPorSaldos.get(i).getSaldo() + ((clientesPorSaldos.get(i).getSaldo()*3)/100);
+                clientesPorSaldos.get(i).setSaldo(saldoSubido);
+           }
+           
+       }
        
        //inicio del menu
         do{
@@ -98,7 +116,7 @@ public class Menu {
                             break;
                         case 2://modificar datos
                              do{
-                                interfazUsuario.mensajeNumeroCuenta();
+                                interfazUsuario.mensajeNumeroCuenta1();
                                 Scanner numeroCuentaMod = new Scanner(System.in);
                                 numeroCuentaUsuarioMod = numeroCuentaMod.nextLine();
                                 
@@ -133,7 +151,6 @@ public class Menu {
                                        break;
                                        case 5:
                                             interfazUsuario.idModi();
-                                            // Tocaria CReeear nuevos Scanner
                                             Scanner id1 = new Scanner(System.in);
                                             idMod = id1.nextLine();
                                             clientes.get(numeroCuentaUsuarioMod).setId(idMod);
@@ -145,7 +162,6 @@ public class Menu {
                                             Scanner Saldo1 = new Scanner(System.in);
                                             saldoMod = Saldo1.nextInt();
                                             clientes.get(numeroCuentaUsuarioMod).setSaldo(saldoMod);
-
                                        default: 
                                            System.out.println("opcion invalida");
                                          break;
@@ -199,6 +215,7 @@ public class Menu {
                                     break;
                                 }
                             }while(eliminado == false);
+                            break;
                         case 5://tabla de reportes, 5 usuario con mas dinero
                             interfazUsuario.imprimirTabla();
                                 for(int i = 5 ; i>=0 ; i--){
@@ -223,7 +240,7 @@ public class Menu {
                                         }
                                     }
                                 }
-                          break;
+                        break;
                         case 6://salir
                           break;    
                         default:
